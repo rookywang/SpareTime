@@ -41,7 +41,7 @@ public class DetailsActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         if (fragment.isAdded()) {
-            getSupportFragmentManager().putFragment(outState, "detailFragment", fragment);
+            getSupportFragmentManager().putFragment(outState, "DetailsFragment", fragment);
         }
     }
 }

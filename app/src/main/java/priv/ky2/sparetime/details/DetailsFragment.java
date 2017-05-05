@@ -102,7 +102,7 @@ public class DetailsFragment extends Fragment implements DetailsContract.View {
                         .setColorFilter(getContext().getResources().getColor(R.color.colorPrimary));
             }
 
-            // add to bookmarks or delete from bookmarks
+            // 添加 / 取消收藏
             view.findViewById(R.id.layout_bookmark).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -111,7 +111,7 @@ public class DetailsFragment extends Fragment implements DetailsContract.View {
                 }
             });
 
-            // copy the article's link to clipboard
+            // 复制链接
             view.findViewById(R.id.layout_copy_link).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -120,7 +120,7 @@ public class DetailsFragment extends Fragment implements DetailsContract.View {
                 }
             });
 
-            // open the link in browser
+            // 浏览器中打开链接
             view.findViewById(R.id.layout_open_in_browser).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -129,7 +129,7 @@ public class DetailsFragment extends Fragment implements DetailsContract.View {
                 }
             });
 
-            // copy the text content to clipboard
+            // 复制文本内容
             view.findViewById(R.id.layout_copy_text).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -138,7 +138,7 @@ public class DetailsFragment extends Fragment implements DetailsContract.View {
                 }
             });
 
-            // shareAsText the content as text
+            // 作为文本分享
             view.findViewById(R.id.layout_share_text).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -291,6 +291,7 @@ public class DetailsFragment extends Fragment implements DetailsContract.View {
 
         });
 
+        webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NORMAL);//适应屏幕，内容将自动缩放
     }
 
     // to change the title's font size of toolbar layout
