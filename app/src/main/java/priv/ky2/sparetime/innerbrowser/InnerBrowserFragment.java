@@ -124,6 +124,7 @@ public class InnerBrowserFragment extends Fragment {
         progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
         webView = (WebView) view.findViewById(R.id.web_view);
         toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_clear_white_24px);
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         activity.setSupportActionBar(toolbar);
         activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);

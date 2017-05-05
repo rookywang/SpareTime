@@ -37,6 +37,7 @@ public class DetailsFragment extends Fragment implements DetailsContract.View {
     private NestedScrollView scrollView;
     private CollapsingToolbarLayout toolbarLayout;
     private SwipeRefreshLayout refreshLayout;
+    private Toolbar mToolbar;
 
     private Context context;
 
@@ -62,7 +63,9 @@ public class DetailsFragment extends Fragment implements DetailsContract.View {
 
         presenter.requestData();
 
-        view.findViewById(R.id.toolbar).setOnClickListener(new View.OnClickListener() {
+        mToolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        mToolbar.setNavigationIcon(R.drawable.ic_clear_white_24px);
+        mToolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 scrollView.smoothScrollTo(0, 0);
