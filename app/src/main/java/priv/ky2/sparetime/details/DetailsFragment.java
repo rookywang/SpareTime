@@ -175,14 +175,14 @@ public class DetailsFragment extends Fragment implements DetailsContract.View {
 
     @Override
     public void showLoadingError() {
-        Snackbar.make(imageView,R.string.loaded_failed,Snackbar.LENGTH_INDEFINITE)
-                .setAction(R.string.retry, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        presenter.requestData();
-                    }
-                })
-                .show();
+//        Snackbar.make(imageView,R.string.loaded_failed,Snackbar.LENGTH_INDEFINITE)
+//                .setAction(R.string.retry, new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        presenter.requestData();
+//                    }
+//                })
+//                .show();
     }
 
     @Override
