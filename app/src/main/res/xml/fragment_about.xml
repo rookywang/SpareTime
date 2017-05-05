@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <android.support.v7.preference.PreferenceCategory
+            android:title="@string/auth_name">
+
+        <android.support.v7.preference.Preference
+                android:title="@string/auth_name_text"/>
+
+    </android.support.v7.preference.PreferenceCategory>
+
+    <android.support.v7.preference.PreferenceCategory
+            android:title="@string/auth_no">
+
+        <android.support.v7.preference.Preference
+                android:title="@string/auth_no_text"/>
+
+    </android.support.v7.preference.PreferenceCategory>
+
+    <android.support.v7.preference.PreferenceCategory
+            android:title="@string/pro_name">
+
+        <android.support.v7.preference.Preference
+                android:title="@string/pro_name_text"/>
+
+    </android.support.v7.preference.PreferenceCategory>
+</PreferenceScreen>
