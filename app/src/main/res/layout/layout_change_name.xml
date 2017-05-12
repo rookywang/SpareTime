@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/layout_change_name"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/dialog_horizontal_margin"
+    android:layout_marginRight="@dimen/dialog_horizontal_margin"
+    android:orientation="vertical">
+
+
+    <android.support.design.widget.TextInputLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/margin_vertical"
+        app:errorEnabled="true">
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:inputType="text"
+            android:singleLine="true"
+            android:hint="请输入昵称"
+            android:textSize="@dimen/text_size_18"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_confirm"
+        android:layout_width="105dp"
+        android:layout_height="40dp"
+        style="@style/Base.Widget.AppCompat.Button.Borderless"
+        android:layout_gravity="right"
+        android:gravity="right"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/text_size_18"
+        android:text="确定"/>
+
+    <View style="@style/common_divider"/>
+</LinearLayout>
