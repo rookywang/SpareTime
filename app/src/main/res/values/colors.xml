@@ -6,4 +6,6 @@
 
     <color name="textColorPrimary">#616161</color>
     <color name="viewBackground">@android:color/white</color>
+
+    <color name="grey">#A0A0A0</color>
 </resources>
