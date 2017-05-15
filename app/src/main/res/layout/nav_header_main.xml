@@ -23,6 +23,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="15dp"
         android:textColor="@color/mdtp_white"
-        android:text="路人"/>
+        android:text="JlUer"/>
 
 </RelativeLayout>
