@@ -22,7 +22,7 @@ import java.util.Random;
 
 import priv.ky2.sparetime.bean.BeanType;
 import priv.ky2.sparetime.bean.DoubanMomentNews;
-import priv.ky2.sparetime.bean.StringModelImplement;
+import priv.ky2.sparetime.network.StringModelImplement;
 import priv.ky2.sparetime.database.DatabaseHelper;
 import priv.ky2.sparetime.details.DetailsActivity;
 import priv.ky2.sparetime.network.NetworkState;
@@ -118,7 +118,7 @@ public class DoubanMomentPresenter implements DoubanMomentContract.Presenter {
                                     db.endTransaction();
                                 }
                             }
-                            Intent intent = new Intent("com.marktony.zhihudaily.LOCAL_BROADCAST");
+                            Intent intent = new Intent("pri.ky2.sparetime.LOCAL_BROADCAST");
                             intent.putExtra("type", CacheService.TYPE_DOUBAN);
                             intent.putExtra("id", item.getId());
                             LocalBroadcastManager.getInstance(context).sendBroadcast(intent);

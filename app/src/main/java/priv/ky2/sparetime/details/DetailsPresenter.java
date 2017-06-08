@@ -26,7 +26,7 @@ import priv.ky2.sparetime.R;
 import priv.ky2.sparetime.bean.BeanType;
 import priv.ky2.sparetime.bean.DoubanMomentNews;
 import priv.ky2.sparetime.bean.DoubanMomentStory;
-import priv.ky2.sparetime.bean.StringModelImplement;
+import priv.ky2.sparetime.network.StringModelImplement;
 import priv.ky2.sparetime.bean.ZhihuDailyStory;
 import priv.ky2.sparetime.chromecustomtabs.ChromeCustomTabActivityHelper;
 import priv.ky2.sparetime.chromecustomtabs.CustomFallback;
