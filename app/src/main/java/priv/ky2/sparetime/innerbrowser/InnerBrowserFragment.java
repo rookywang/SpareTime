@@ -25,7 +25,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import priv.ky2.sparetime.R;
-import priv.ky2.sparetime.utils.NetworkState;
+import priv.ky2.sparetime.network.NetworkState;
 
 /**
  * Created by wangkaiyan on 2017/4/19.

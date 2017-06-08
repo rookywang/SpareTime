@@ -24,7 +24,7 @@ import priv.ky2.sparetime.details.DetailsActivity;
 import priv.ky2.sparetime.network.OnStringListener;
 import priv.ky2.sparetime.network.Urls;
 import priv.ky2.sparetime.service.CacheService;
-import priv.ky2.sparetime.utils.NetworkState;
+import priv.ky2.sparetime.network.NetworkState;
 
 /**
  * Created by wangkaiyan on 2017/4/19.
@@ -92,7 +92,7 @@ public class GuokeSelectionPresenter implements GuokeSelectionContract.Presenter
 
                     try {
 
-//                        Logger.json(result);
+                        Logger.json(result);
 
                         GuokeSelectionNews question = gson.fromJson(result, GuokeSelectionNews.class);
 

@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.content.LocalBroadcastManager;
 
 import com.android.volley.VolleyError;
+import com.orhanobut.logger.Logger;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -24,11 +25,11 @@ import priv.ky2.sparetime.bean.StringModelImplement;
 import priv.ky2.sparetime.bean.ZhihuDailyNews;
 import priv.ky2.sparetime.database.DatabaseHelper;
 import priv.ky2.sparetime.details.DetailsActivity;
+import priv.ky2.sparetime.network.NetworkState;
 import priv.ky2.sparetime.network.OnStringListener;
 import priv.ky2.sparetime.network.Urls;
 import priv.ky2.sparetime.service.CacheService;
 import priv.ky2.sparetime.utils.DateFormatter;
-import priv.ky2.sparetime.utils.NetworkState;
 
 /**
  * Created by wangkaiyan on 2017/4/18.
@@ -72,7 +73,7 @@ public class ZhihuDailyPresenter implements ZhihuDailyContract.Presenter {
 
                     try {
 
-//                        Logger.json(result);
+                        Logger.json(result);
 
                         ZhihuDailyNews post = gson.fromJson(result, ZhihuDailyNews.class);
                         ContentValues values = new ContentValues();

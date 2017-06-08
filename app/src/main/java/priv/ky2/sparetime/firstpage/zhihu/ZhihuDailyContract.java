@@ -14,7 +14,7 @@ public interface ZhihuDailyContract {
 
     interface View extends BaseView<Presenter> {
 
-        // 显示加载或者显示错误
+        //显示错误
         void showError();
 
         // 显示正在加载
@@ -33,7 +33,7 @@ public interface ZhihuDailyContract {
         // 请求数据
         void loadPosts(long date, boolean clearing);
 
-        // 刷新数居
+        // 刷新数据
         void refresh();
 
         // 加载更多文章

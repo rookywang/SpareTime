@@ -1,4 +1,4 @@
-package priv.ky2.sparetime.utils;
+package priv.ky2.sparetime.network;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

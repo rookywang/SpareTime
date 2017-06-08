@@ -33,7 +33,7 @@ import priv.ky2.sparetime.chromecustomtabs.CustomFallback;
 import priv.ky2.sparetime.database.DatabaseHelper;
 import priv.ky2.sparetime.network.OnStringListener;
 import priv.ky2.sparetime.network.Urls;
-import priv.ky2.sparetime.utils.NetworkState;
+import priv.ky2.sparetime.network.NetworkState;
 
 import static android.content.Context.CLIPBOARD_SERVICE;
 import static android.content.Context.MODE_PRIVATE;
