@@ -108,8 +108,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             showMainFragment();
             mNavigationView.setCheckedItem(R.id.nav_home);
         }
-
-//        startService(new Intent(this, CacheService.class));
     }
 
     private void initViews() {
@@ -324,19 +322,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-//    @Override
-//    protected void onDestroy() {
-//
-//        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-//        for (ActivityManager.RunningServiceInfo serviceInfo : manager.getRunningServices(Integer.MAX_VALUE)) {
-//            if (CacheService.class.getName().equals(serviceInfo.service.getClassName())) {
-//                stopService(new Intent(this, CacheService.class));
-//            }
-//        }
-//
-//        super.onDestroy();
-//    }
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -429,7 +414,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onBackPressed() {
         if (!quit) { //询问退出程序
-//            Toast.makeText(MainActivity.this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
             Snackbar.make(mToolbar, "再按一次退出程序", Snackbar.LENGTH_SHORT).show();
             new Timer(true).schedule(new TimerTask() { //启动定时任务
                 @Override
