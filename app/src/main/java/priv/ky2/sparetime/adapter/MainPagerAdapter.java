@@ -6,9 +6,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import priv.ky2.sparetime.R;
-import priv.ky2.sparetime.firstpage.douban.DBMomentFragment;
-import priv.ky2.sparetime.firstpage.guoke.GuokeSelectionFragment;
-import priv.ky2.sparetime.firstpage.zhihu.ZHDailyFragment;
+import priv.ky2.sparetime.content.douban.DBMomentFragment;
+import priv.ky2.sparetime.content.guoke.GKSelectionFragment;
+import priv.ky2.sparetime.content.zhihu.ZHDailyFragment;
 
 /**
  * @author wangkaiyan
@@ -19,10 +19,10 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
 
     private String[] titles;
     private ZHDailyFragment mZHFragment;
-    private GuokeSelectionFragment mGKFragment;
+    private GKSelectionFragment mGKFragment;
     private DBMomentFragment mDBFragment;
 
-    public GuokeSelectionFragment getGKFragment() {
+    public GKSelectionFragment getGKFragment() {
         return mGKFragment;
     }
 
@@ -37,7 +37,7 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
     public MainPagerAdapter(FragmentManager fm,
                             Context context,
                             ZHDailyFragment mZHDailyFragment,
-                            GuokeSelectionFragment guokeSelectionFragment,
+                            GKSelectionFragment mGKSelectionFragment,
                             DBMomentFragment mDBMomentFragment) {
         super(fm);
         titles = new String[]{
@@ -46,7 +46,7 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
                 context.getResources().getString(R.string.douban_moment)
         };
         this.mZHFragment = mZHDailyFragment;
-        mGKFragment = guokeSelectionFragment;
+        mGKFragment = mGKSelectionFragment;
         mDBFragment = mDBMomentFragment;
     }
 

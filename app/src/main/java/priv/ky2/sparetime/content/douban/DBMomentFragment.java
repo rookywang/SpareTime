@@ -1,4 +1,4 @@
-package priv.ky2.sparetime.firstpage.douban;
+package priv.ky2.sparetime.content.douban;
 
 
 import android.os.Bundle;

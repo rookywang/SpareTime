@@ -1,4 +1,4 @@
-package priv.ky2.sparetime.collection;
+package priv.ky2.sparetime.content.collection;
 
 import java.util.ArrayList;
 

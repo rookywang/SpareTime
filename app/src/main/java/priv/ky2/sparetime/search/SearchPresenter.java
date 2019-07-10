@@ -31,7 +31,7 @@ import priv.ky2.sparetime.bean.DoubanMomentNews;
 import priv.ky2.sparetime.bean.GuokeSelectionNews;
 import priv.ky2.sparetime.bean.ZhihuDailyNews;
 import priv.ky2.sparetime.database.DatabaseHelper;
-import priv.ky2.sparetime.details.DetailsActivity;
+import priv.ky2.sparetime.content.details.DetailsActivity;
 
 import static priv.ky2.sparetime.adapter.CollectionAdapter.TYPE_DOUBAN_NORMAL;
 import static priv.ky2.sparetime.adapter.CollectionAdapter.TYPE_DOUBAN_WITH_HEADER;

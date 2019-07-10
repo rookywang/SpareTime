@@ -1,4 +1,4 @@
-package priv.ky2.sparetime.firstpage.zhihu;
+package priv.ky2.sparetime.content.zhihu;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

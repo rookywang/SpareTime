@@ -1,4 +1,4 @@
-package priv.ky2.sparetime.firstpage.main;
+package priv.ky2.sparetime.content.main;
 
 
 import android.content.Context;
@@ -19,12 +19,12 @@ import java.util.Random;
 
 import priv.ky2.sparetime.R;
 import priv.ky2.sparetime.adapter.MainPagerAdapter;
-import priv.ky2.sparetime.firstpage.douban.DBMomentFragment;
-import priv.ky2.sparetime.firstpage.douban.DBMomentPresenter;
-import priv.ky2.sparetime.firstpage.guoke.GuokeSelectionFragment;
-import priv.ky2.sparetime.firstpage.guoke.GuokeSelectionPresenter;
-import priv.ky2.sparetime.firstpage.zhihu.ZHDailyFragment;
-import priv.ky2.sparetime.firstpage.zhihu.ZHDailyPresenter;
+import priv.ky2.sparetime.content.douban.DBMomentFragment;
+import priv.ky2.sparetime.content.douban.DBMomentPresenter;
+import priv.ky2.sparetime.content.guoke.GKSelectionFragment;
+import priv.ky2.sparetime.content.guoke.GKSelectionPresenter;
+import priv.ky2.sparetime.content.zhihu.ZHDailyFragment;
+import priv.ky2.sparetime.content.zhihu.ZHDailyPresenter;
 
 
 public class MainFragment extends Fragment {
@@ -35,11 +35,11 @@ public class MainFragment extends Fragment {
     private TabLayout mTabLayout;
 
     private ZHDailyFragment mZHDailyFragment;
-    private GuokeSelectionFragment mGuokeSelectionFragment;
+    private GKSelectionFragment mGKSelectionFragment;
     private DBMomentFragment mDBMomentFragment;
 
     private ZHDailyPresenter mZHDailyPresenter;
-    private GuokeSelectionPresenter mGuokeSelectionPresenter;
+    private GKSelectionPresenter mGKSelectionPresenter;
     private DBMomentPresenter mDBMomentPresenter;
 
     public MainFragment() {
@@ -64,16 +64,16 @@ public class MainFragment extends Fragment {
         if (savedInstanceState != null) {
             FragmentManager fragmentManager = getChildFragmentManager();
             mZHDailyFragment = (ZHDailyFragment) fragmentManager.getFragment(savedInstanceState, "zhihu");
-            mGuokeSelectionFragment = (GuokeSelectionFragment) fragmentManager.getFragment(savedInstanceState, "guoke");
+            mGKSelectionFragment = (GKSelectionFragment) fragmentManager.getFragment(savedInstanceState, "guoke");
             mDBMomentFragment = (DBMomentFragment) fragmentManager.getFragment(savedInstanceState, "douban");
         } else {
             mZHDailyFragment = ZHDailyFragment.newInstance();
-            mGuokeSelectionFragment = GuokeSelectionFragment.newInstance();
+            mGKSelectionFragment = GKSelectionFragment.newInstance();
             mDBMomentFragment = DBMomentFragment.newInstance();
         }
 
         mZHDailyPresenter = new ZHDailyPresenter(mContext, mZHDailyFragment);
-        mGuokeSelectionPresenter = new GuokeSelectionPresenter(mContext, mGuokeSelectionFragment);
+        mGKSelectionPresenter = new GKSelectionPresenter(mContext, mGKSelectionFragment);
         mDBMomentPresenter = new DBMomentPresenter(mContext, mDBMomentFragment);
     }
 
@@ -120,7 +120,7 @@ public class MainFragment extends Fragment {
                 getChildFragmentManager(),
                 mContext,
                 mZHDailyFragment,
-                mGuokeSelectionFragment,
+                mGKSelectionFragment,
                 mDBMomentFragment);
 
         viewPager.setAdapter(mMainPagerAdapter);
@@ -157,7 +157,7 @@ public class MainFragment extends Fragment {
         super.onSaveInstanceState(outState);
         FragmentManager manager = getChildFragmentManager();
         manager.putFragment(outState, "zhihu", mZHDailyFragment);
-        manager.putFragment(outState, "guoke", mGuokeSelectionFragment);
+        manager.putFragment(outState, "guoke", mGKSelectionFragment);
         manager.putFragment(outState, "douban", mDBMomentFragment);
     }
 
@@ -169,7 +169,7 @@ public class MainFragment extends Fragment {
                 mZHDailyPresenter.feelLucky();
                 break;
             case 1:
-                mGuokeSelectionPresenter.feelLucky();
+                mGKSelectionPresenter.feelLucky();
                 break;
             default:
                 mDBMomentPresenter.feelLucky();

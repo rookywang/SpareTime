@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package priv.ky2.sparetime.details;
+package priv.ky2.sparetime.content.details;
 
 import android.webkit.WebView;
 

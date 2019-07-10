@@ -1,47 +1,42 @@
-package priv.ky2.sparetime.firstpage.douban;
+package priv.ky2.sparetime.content.zhihu;
 
 import java.util.ArrayList;
 
 import priv.ky2.sparetime.base.BasePresenter;
 import priv.ky2.sparetime.base.BaseView;
-import priv.ky2.sparetime.bean.DoubanMomentNews;
+import priv.ky2.sparetime.bean.ZhihuDailyNews;
 
 /**
  * @author wangkaiyan
- * @date 2017/4/19.
+ * @date 2017/4/18.
  */
-public interface DBMomentContract {
+public interface ZHDailyContract {
 
     interface View extends BaseView<Presenter> {
 
         /**
-         * 开始加载
+         * 显示错误
          */
-        void startLoading();
+        void showError();
 
         /**
-         * 停止加载
+         * 显示正在加载
+         */
+        void showLoading();
+
+        /**
+         * 停止显示正在加载
          */
         void stopLoading();
 
         /**
-         * 加载失败
+         * 成功获取到数据后，在界面中显示
          */
-        void showLoadingError();
-
-        /**
-         * 获取到数据后在界面上显示更新界面
-         */
-        void showResults(ArrayList<DoubanMomentNews.posts> list);
+        void showResults(ArrayList<ZhihuDailyNews.Question> list);
 
     }
 
     interface Presenter extends BasePresenter {
-
-        /**
-         * 显示文章详情
-         */
-        void startReading(int position);
 
         /**
          * 请求数据
@@ -49,7 +44,7 @@ public interface DBMomentContract {
         void loadPosts(long date, boolean clearing);
 
         /**
-         * 刷新文章数据
+         * 刷新数据
          */
         void refresh();
 
@@ -57,6 +52,11 @@ public interface DBMomentContract {
          * 加载更多文章
          */
         void loadMore(long date);
+
+        /**
+         * 显示文章详情
+         */
+        void startReading(int position);
 
         /**
          * 随便看看

@@ -4,7 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="priv.ky2.sparetime.firstpage.main.SplashActivity">
+        tools:context="priv.ky2.sparetime.content.main.SplashActivity">
 
     <ImageView
             android:id="@+id/iv_splash"

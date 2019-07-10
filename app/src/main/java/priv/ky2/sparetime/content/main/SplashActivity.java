@@ -1,4 +1,4 @@
-package priv.ky2.sparetime.firstpage.main;
+package priv.ky2.sparetime.content.main;
 
 import android.app.ActivityManager;
 import android.content.Context;

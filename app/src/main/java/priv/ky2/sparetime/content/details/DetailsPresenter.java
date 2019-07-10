@@ -1,4 +1,4 @@
-package priv.ky2.sparetime.details;
+package priv.ky2.sparetime.content.details;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;

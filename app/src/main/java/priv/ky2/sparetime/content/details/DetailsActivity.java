@@ -1,4 +1,4 @@
-package priv.ky2.sparetime.details;
+package priv.ky2.sparetime.content.details;
 
 import android.content.Intent;
 import android.os.Bundle;

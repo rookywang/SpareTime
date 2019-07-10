@@ -1,4 +1,4 @@
-package priv.ky2.sparetime.firstpage.zhihu;
+package priv.ky2.sparetime.content.zhihu;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -22,7 +22,7 @@ import java.util.Random;
 import priv.ky2.sparetime.bean.BeanType;
 import priv.ky2.sparetime.bean.ZhihuDailyNews;
 import priv.ky2.sparetime.database.DatabaseHelper;
-import priv.ky2.sparetime.details.DetailsActivity;
+import priv.ky2.sparetime.content.details.DetailsActivity;
 import priv.ky2.sparetime.network.NetworkState;
 import priv.ky2.sparetime.network.OnStringListener;
 import priv.ky2.sparetime.network.StringModelImplement;

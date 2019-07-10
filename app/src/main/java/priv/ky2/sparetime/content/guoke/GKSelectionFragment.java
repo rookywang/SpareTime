@@ -1,4 +1,4 @@
-package priv.ky2.sparetime.firstpage.guoke;
+package priv.ky2.sparetime.content.guoke;
 
 
 import android.os.Bundle;
@@ -19,20 +19,23 @@ import priv.ky2.sparetime.adapter.GuokeNewsAdapter;
 import priv.ky2.sparetime.adapter.OnRecyclerViewOnClickListener;
 import priv.ky2.sparetime.bean.GuokeSelectionNews;
 
-
-public class GuokeSelectionFragment extends Fragment implements GuokeSelectionContract.View {
+/**
+ * @author wangkaiyan
+ * @date 2017/4/19.
+ */
+public class GKSelectionFragment extends Fragment implements GKSelectionContract.View {
 
     private RecyclerView recyclerView;
     private SwipeRefreshLayout refreshLayout;
     private GuokeNewsAdapter adapter;
-    private GuokeSelectionContract.Presenter presenter;
+    private GKSelectionContract.Presenter presenter;
 
-    public GuokeSelectionFragment(){
+    public GKSelectionFragment() {
 
     }
 
-    public static GuokeSelectionFragment newInstance() {
-        return new GuokeSelectionFragment();
+    public static GKSelectionFragment newInstance() {
+        return new GKSelectionFragment();
     }
 
     @Override
@@ -43,37 +46,30 @@ public class GuokeSelectionFragment extends Fragment implements GuokeSelectionCo
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        View view = inflater.inflate(R.layout.fragment_list,container,false);
-
+        View view = inflater.inflate(R.layout.fragment_list, container, false);
         initViews(view);
-
         presenter.start();
-
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 presenter.refresh();
             }
         });
-
         return view;
     }
 
     @Override
-    public void setPresenter(GuokeSelectionContract.Presenter presenter) {
-        if (presenter != null){
+    public void setPresenter(GKSelectionContract.Presenter presenter) {
+        if (presenter != null) {
             this.presenter = presenter;
         }
     }
 
     @Override
     public void initViews(View view) {
-
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
         refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refreshLayout);
         //设置下拉刷新的按钮的颜色
         refreshLayout.setColorSchemeResources(R.color.colorPrimary);
@@ -82,7 +78,7 @@ public class GuokeSelectionFragment extends Fragment implements GuokeSelectionCo
 
     @Override
     public void showError() {
-        Snackbar.make(recyclerView, R.string.loaded_failed,Snackbar.LENGTH_INDEFINITE)
+        Snackbar.make(recyclerView, R.string.loaded_failed, Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.retry, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -106,7 +102,6 @@ public class GuokeSelectionFragment extends Fragment implements GuokeSelectionCo
         } else {
             adapter.notifyDataSetChanged();
         }
-
     }
 
     @Override

@@ -1,4 +1,4 @@
-package priv.ky2.sparetime.firstpage.main;
+package priv.ky2.sparetime.content.main;
 
 import android.content.Context;
 import android.content.Intent;
@@ -43,8 +43,8 @@ import java.util.TimerTask;
 
 import priv.ky2.sparetime.R;
 import priv.ky2.sparetime.about.AboutActivity;
-import priv.ky2.sparetime.collection.CollectionFragment;
-import priv.ky2.sparetime.collection.CollectionPresenter;
+import priv.ky2.sparetime.content.collection.CollectionFragment;
+import priv.ky2.sparetime.content.collection.CollectionPresenter;
 import priv.ky2.sparetime.systemsettings.SystemSettingsActivity;
 import priv.ky2.sparetime.utils.ConstantString;
 import priv.ky2.sparetime.utils.SharedPreferenceUtil;

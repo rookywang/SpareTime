@@ -1,4 +1,4 @@
-package priv.ky2.sparetime.firstpage.guoke;
+package priv.ky2.sparetime.content.guoke;
 
 import java.util.ArrayList;
 
@@ -7,10 +7,10 @@ import priv.ky2.sparetime.base.BaseView;
 import priv.ky2.sparetime.bean.GuokeSelectionNews;
 
 /**
- * Created by wangkaiyan on 2017/4/19.
+ * @author wangkaiyan
+ * @date 2017/4/19.
  */
-
-public interface GuokeSelectionContract {
+public interface GKSelectionContract {
 
     interface View extends BaseView<Presenter> {
 

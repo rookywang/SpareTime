@@ -22,7 +22,7 @@
 
         <!-- 启动页 -->
         <activity
-                android:name=".firstpage.main.SplashActivity"
+                android:name=".content.main.SplashActivity"
                 android:configChanges="orientation|keyboardHidden|screenSize|screenLayout"
                 android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -34,7 +34,7 @@
 
         <!-- 主页 -->
         <activity
-                android:name=".firstpage.main.MainActivity"
+                android:name=".content.main.MainActivity"
                 android:configChanges="orientation|keyboardHidden|screenSize|screenLayout"
                 android:label="@string/app_name"
                 android:theme="@style/AppTheme.NoActionBar">
@@ -45,7 +45,7 @@
 
         <!-- 文章详情页 -->
         <activity
-                android:name=".details.DetailsActivity"
+                android:name=".content.details.DetailsActivity"
                 android:configChanges="orientation|keyboardHidden|screenSize|screenLayout"
                 android:label="@string/title_activity_read"
                 android:theme="@style/AppTheme.NoActionBar"/>
