@@ -137,7 +137,7 @@ public class ZHDailyFragment extends Fragment implements ZHDailyContract.View {
                 } else if (mTabLayout.getSelectedTabPosition() == 2) {
                     ViewPager p = getActivity().findViewById(R.id.view_pager);
                     MainPagerAdapter ad = (MainPagerAdapter) p.getAdapter();
-                    ad.getDoubanFragment().showPickDialog();
+                    ad.getDBFragment().showPickDialog();
                 }
             }
         });

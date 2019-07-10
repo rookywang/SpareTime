@@ -6,63 +6,58 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import priv.ky2.sparetime.R;
-import priv.ky2.sparetime.firstpage.douban.DoubanMomentFragment;
+import priv.ky2.sparetime.firstpage.douban.DBMomentFragment;
 import priv.ky2.sparetime.firstpage.guoke.GuokeSelectionFragment;
 import priv.ky2.sparetime.firstpage.zhihu.ZHDailyFragment;
 
 /**
- * Created by wangkaiyan on 2017/4/19.
+ * @author wangkaiyan
+ * @date 2017/4/19.
  */
-
 public class MainPagerAdapter extends FragmentPagerAdapter {
 
 
     private String[] titles;
-    private final Context context;
+    private ZHDailyFragment mZHFragment;
+    private GuokeSelectionFragment mGKFragment;
+    private DBMomentFragment mDBFragment;
 
-    private ZHDailyFragment mZHDailyFragment;
-    private GuokeSelectionFragment mGuokeSelectionFragment;
-    private DoubanMomentFragment mDoubanFragment;
-
-    public GuokeSelectionFragment getGuokrFragment() {
-        return mGuokeSelectionFragment;
+    public GuokeSelectionFragment getGKFragment() {
+        return mGKFragment;
     }
 
-    public ZHDailyFragment getZhihuFragment() {
-        return mZHDailyFragment;
+    public ZHDailyFragment getZHFragment() {
+        return mZHFragment;
     }
 
-    public DoubanMomentFragment getDoubanFragment() {
-        return mDoubanFragment;
+    public DBMomentFragment getDBFragment() {
+        return mDBFragment;
     }
-
 
     public MainPagerAdapter(FragmentManager fm,
                             Context context,
                             ZHDailyFragment mZHDailyFragment,
                             GuokeSelectionFragment guokeSelectionFragment,
-                            DoubanMomentFragment doubanMomentFragment) {
+                            DBMomentFragment mDBMomentFragment) {
         super(fm);
-
-        this.context = context;
         titles = new String[]{
                 context.getResources().getString(R.string.zhihu_daily),
                 context.getResources().getString(R.string.guokr_handpick),
                 context.getResources().getString(R.string.douban_moment)
         };
-        this.mZHDailyFragment = mZHDailyFragment;
-        mGuokeSelectionFragment = guokeSelectionFragment;
-        mDoubanFragment = doubanMomentFragment;
+        this.mZHFragment = mZHDailyFragment;
+        mGKFragment = guokeSelectionFragment;
+        mDBFragment = mDBMomentFragment;
     }
 
     @Override
     public Fragment getItem(int position) {
         if (position == 1) {
-            return mGuokeSelectionFragment;
+            return mGKFragment;
         } else if (position == 2) {
-            return mDoubanFragment;
+            return mDBFragment;
         }
-        return mZHDailyFragment;
+        return mZHFragment;
     }
 
     @Override

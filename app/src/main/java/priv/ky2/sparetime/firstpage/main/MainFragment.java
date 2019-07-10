@@ -19,8 +19,8 @@ import java.util.Random;
 
 import priv.ky2.sparetime.R;
 import priv.ky2.sparetime.adapter.MainPagerAdapter;
-import priv.ky2.sparetime.firstpage.douban.DoubanMomentFragment;
-import priv.ky2.sparetime.firstpage.douban.DoubanMomentPresenter;
+import priv.ky2.sparetime.firstpage.douban.DBMomentFragment;
+import priv.ky2.sparetime.firstpage.douban.DBMomentPresenter;
 import priv.ky2.sparetime.firstpage.guoke.GuokeSelectionFragment;
 import priv.ky2.sparetime.firstpage.guoke.GuokeSelectionPresenter;
 import priv.ky2.sparetime.firstpage.zhihu.ZHDailyFragment;
@@ -36,11 +36,11 @@ public class MainFragment extends Fragment {
 
     private ZHDailyFragment mZHDailyFragment;
     private GuokeSelectionFragment mGuokeSelectionFragment;
-    private DoubanMomentFragment mDoubanMomentFragment;
+    private DBMomentFragment mDBMomentFragment;
 
     private ZHDailyPresenter mZHDailyPresenter;
     private GuokeSelectionPresenter mGuokeSelectionPresenter;
-    private DoubanMomentPresenter mDoubanMomentPresenter;
+    private DBMomentPresenter mDBMomentPresenter;
 
     public MainFragment() {
 
@@ -65,16 +65,16 @@ public class MainFragment extends Fragment {
             FragmentManager fragmentManager = getChildFragmentManager();
             mZHDailyFragment = (ZHDailyFragment) fragmentManager.getFragment(savedInstanceState, "zhihu");
             mGuokeSelectionFragment = (GuokeSelectionFragment) fragmentManager.getFragment(savedInstanceState, "guoke");
-            mDoubanMomentFragment = (DoubanMomentFragment) fragmentManager.getFragment(savedInstanceState, "douban");
+            mDBMomentFragment = (DBMomentFragment) fragmentManager.getFragment(savedInstanceState, "douban");
         } else {
             mZHDailyFragment = ZHDailyFragment.newInstance();
             mGuokeSelectionFragment = GuokeSelectionFragment.newInstance();
-            mDoubanMomentFragment = DoubanMomentFragment.newInstance();
+            mDBMomentFragment = DBMomentFragment.newInstance();
         }
 
         mZHDailyPresenter = new ZHDailyPresenter(mContext, mZHDailyFragment);
         mGuokeSelectionPresenter = new GuokeSelectionPresenter(mContext, mGuokeSelectionFragment);
-        mDoubanMomentPresenter = new DoubanMomentPresenter(mContext, mDoubanMomentFragment);
+        mDBMomentPresenter = new DBMomentPresenter(mContext, mDBMomentFragment);
     }
 
     @Override
@@ -121,7 +121,7 @@ public class MainFragment extends Fragment {
                 mContext,
                 mZHDailyFragment,
                 mGuokeSelectionFragment,
-                mDoubanMomentFragment);
+                mDBMomentFragment);
 
         viewPager.setAdapter(mMainPagerAdapter);
         mTabLayout.setupWithViewPager(viewPager);
@@ -158,7 +158,7 @@ public class MainFragment extends Fragment {
         FragmentManager manager = getChildFragmentManager();
         manager.putFragment(outState, "zhihu", mZHDailyFragment);
         manager.putFragment(outState, "guoke", mGuokeSelectionFragment);
-        manager.putFragment(outState, "douban", mDoubanMomentFragment);
+        manager.putFragment(outState, "douban", mDBMomentFragment);
     }
 
     public void feelLucky() {
@@ -172,7 +172,7 @@ public class MainFragment extends Fragment {
                 mGuokeSelectionPresenter.feelLucky();
                 break;
             default:
-                mDoubanMomentPresenter.feelLucky();
+                mDBMomentPresenter.feelLucky();
                 break;
         }
     }

@@ -19,30 +19,32 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import priv.ky2.sparetime.R;
-import priv.ky2.sparetime.adapter.DoubanMomentAdapter;
+import priv.ky2.sparetime.adapter.DBMomentAdapter;
 import priv.ky2.sparetime.adapter.OnRecyclerViewOnClickListener;
 import priv.ky2.sparetime.bean.DoubanMomentNews;
 
-
-public class DoubanMomentFragment extends Fragment implements DoubanMomentContract.View {
-
+/**
+ * @author wangkaiyan
+ * @date 2017/4/19.
+ */
+public class DBMomentFragment extends Fragment implements DBMomentContract.View {
 
     private RecyclerView recyclerView;
     private SwipeRefreshLayout refreshLayout;
     private FloatingActionButton fab;
 
-    private DoubanMomentAdapter adapter;
-    private DoubanMomentContract.Presenter presenter;
+    private DBMomentAdapter adapter;
+    private DBMomentContract.Presenter presenter;
 
     private int mYear = Calendar.getInstance().get(Calendar.YEAR);
     private int mMonth = Calendar.getInstance().get(Calendar.MONTH);
     private int mDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
 
-    // requires an empty constructor
-    public DoubanMomentFragment() {}
+    public DBMomentFragment() {
+    }
 
-    public static DoubanMomentFragment newInstance() {
-        return new DoubanMomentFragment();
+    public static DBMomentFragment newInstance() {
+        return new DBMomentFragment();
     }
 
     @Override
@@ -54,32 +56,26 @@ public class DoubanMomentFragment extends Fragment implements DoubanMomentContra
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list, container, false);
-
         initViews(view);
-
         presenter.start();
-
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 presenter.loadPosts(Calendar.getInstance().getTimeInMillis(), true);
             }
         });
-
         recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
 
             boolean isSlidingToLast = false;
 
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-
                 LinearLayoutManager manager = (LinearLayoutManager) recyclerView.getLayoutManager();
                 // 当不滚动时
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     // 获取最后一个完全显示的itemposition
                     int lastVisibleItem = manager.findLastCompletelyVisibleItemPosition();
                     int totalItemCount = manager.getItemCount();
-
                     // 判断是否滚动到底部并且是向下滑动
                     if (lastVisibleItem == (totalItemCount - 1) && isSlidingToLast) {
                         Calendar c = Calendar.getInstance();
@@ -87,7 +83,6 @@ public class DoubanMomentFragment extends Fragment implements DoubanMomentContra
                         presenter.loadMore(c.getTimeInMillis());
                     }
                 }
-
                 super.onScrollStateChanged(recyclerView, newState);
             }
 
@@ -95,9 +90,8 @@ public class DoubanMomentFragment extends Fragment implements DoubanMomentContra
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 isSlidingToLast = dy > 0;
-
                 // 隐藏或者显示fab
-                if(dy > 0) {
+                if (dy > 0) {
                     fab.hide();
                 } else {
                     fab.show();
@@ -109,7 +103,7 @@ public class DoubanMomentFragment extends Fragment implements DoubanMomentContra
     }
 
     @Override
-    public void setPresenter(DoubanMomentContract.Presenter presenter) {
+    public void setPresenter(DBMomentContract.Presenter presenter) {
         if (presenter != null) {
             this.presenter = presenter;
         }
@@ -117,15 +111,12 @@ public class DoubanMomentFragment extends Fragment implements DoubanMomentContra
 
     @Override
     public void initViews(View view) {
-
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
+        fab = getActivity().findViewById(R.id.fab);
         fab.setRippleColor(getResources().getColor(R.color.colorPrimaryDark));
-
-        refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refreshLayout);
+        refreshLayout = view.findViewById(R.id.refreshLayout);
         //设置下拉刷新的按钮的颜色
         refreshLayout.setColorSchemeResources(R.color.colorPrimary);
 
@@ -143,7 +134,7 @@ public class DoubanMomentFragment extends Fragment implements DoubanMomentContra
 
     @Override
     public void showLoadingError() {
-        Snackbar.make(fab, R.string.loaded_failed,Snackbar.LENGTH_INDEFINITE)
+        Snackbar.make(fab, R.string.loaded_failed, Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.retry, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -156,7 +147,7 @@ public class DoubanMomentFragment extends Fragment implements DoubanMomentContra
     @Override
     public void showResults(ArrayList<DoubanMomentNews.posts> list) {
         if (adapter == null) {
-            adapter = new DoubanMomentAdapter(getContext(), list);
+            adapter = new DBMomentAdapter(getContext(), list);
             adapter.setItemClickListener(new OnRecyclerViewOnClickListener() {
                 @Override
                 public void OnItemClick(View v, int position) {
@@ -184,14 +175,12 @@ public class DoubanMomentFragment extends Fragment implements DoubanMomentContra
                 presenter.loadPosts(temp.getTimeInMillis(), true);
             }
         }, now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH));
-
         dialog.setMaxDate(Calendar.getInstance());
         Calendar minDate = Calendar.getInstance();
         minDate.set(2014, 5, 12);
         dialog.setMinDate(minDate);
         // set the dialog not vibrate when date change, default value is true
         dialog.vibrate(false);
-
         dialog.show(getActivity().getFragmentManager(), "DatePickerDialog");
     }
 }

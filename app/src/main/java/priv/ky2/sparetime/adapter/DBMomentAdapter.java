@@ -22,7 +22,7 @@ import priv.ky2.sparetime.bean.DoubanMomentNews;
  * Created by wangkaiyan on 2017/4/19.
  */
 
-public class DoubanMomentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class DBMomentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final Context context;
     private final LayoutInflater inflater;
@@ -34,7 +34,7 @@ public class DoubanMomentAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     private OnRecyclerViewOnClickListener listener;
 
-    public DoubanMomentAdapter(@NonNull Context context, @NonNull ArrayList<DoubanMomentNews.posts> list) {
+    public DBMomentAdapter(@NonNull Context context, @NonNull ArrayList<DoubanMomentNews.posts> list) {
         this.context = context;
         this.inflater = LayoutInflater.from(context);
         this.list = list;
