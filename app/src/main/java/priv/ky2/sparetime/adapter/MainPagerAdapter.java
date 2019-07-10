@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import priv.ky2.sparetime.R;
 import priv.ky2.sparetime.firstpage.douban.DoubanMomentFragment;
 import priv.ky2.sparetime.firstpage.guoke.GuokeSelectionFragment;
-import priv.ky2.sparetime.firstpage.zhihu.ZhihuDailyFragment;
+import priv.ky2.sparetime.firstpage.zhihu.ZHDailyFragment;
 
 /**
  * Created by wangkaiyan on 2017/4/19.
@@ -20,7 +20,7 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
     private String[] titles;
     private final Context context;
 
-    private ZhihuDailyFragment mZhihuDailyFragment;
+    private ZHDailyFragment mZHDailyFragment;
     private GuokeSelectionFragment mGuokeSelectionFragment;
     private DoubanMomentFragment mDoubanFragment;
 
@@ -28,8 +28,8 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
         return mGuokeSelectionFragment;
     }
 
-    public ZhihuDailyFragment getZhihuFragment() {
-        return mZhihuDailyFragment;
+    public ZHDailyFragment getZhihuFragment() {
+        return mZHDailyFragment;
     }
 
     public DoubanMomentFragment getDoubanFragment() {
@@ -39,7 +39,7 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
 
     public MainPagerAdapter(FragmentManager fm,
                             Context context,
-                            ZhihuDailyFragment zhihuDailyFragment,
+                            ZHDailyFragment mZHDailyFragment,
                             GuokeSelectionFragment guokeSelectionFragment,
                             DoubanMomentFragment doubanMomentFragment) {
         super(fm);
@@ -50,7 +50,7 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
                 context.getResources().getString(R.string.guokr_handpick),
                 context.getResources().getString(R.string.douban_moment)
         };
-        mZhihuDailyFragment = zhihuDailyFragment;
+        this.mZHDailyFragment = mZHDailyFragment;
         mGuokeSelectionFragment = guokeSelectionFragment;
         mDoubanFragment = doubanMomentFragment;
     }
@@ -62,7 +62,7 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
         } else if (position == 2) {
             return mDoubanFragment;
         }
-        return mZhihuDailyFragment;
+        return mZHDailyFragment;
     }
 
     @Override
