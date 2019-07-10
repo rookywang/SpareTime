@@ -7,42 +7,60 @@ import priv.ky2.sparetime.base.BaseView;
 import priv.ky2.sparetime.bean.ZhihuDailyNews;
 
 /**
- * Created by wangkaiyan on 2017/4/18.
+ * @author wangkaiyan
+ * @date 2017/4/18.
  */
-
-public interface ZhihuDailyContract {
+public interface ZHDailyContract {
 
     interface View extends BaseView<Presenter> {
 
-        //显示错误
+        /**
+         * 显示错误
+         */
         void showError();
 
-        // 显示正在加载
+        /**
+         * 显示正在加载
+         */
         void showLoading();
 
-        // 停止显示正在加载
+        /**
+         * 停止显示正在加载
+         */
         void stopLoading();
 
-        // 成功获取到数据后，在界面中显示
+        /**
+         * 成功获取到数据后，在界面中显示
+         */
         void showResults(ArrayList<ZhihuDailyNews.Question> list);
 
     }
 
     interface Presenter extends BasePresenter {
 
-        // 请求数据
+        /**
+         * 请求数据
+         */
         void loadPosts(long date, boolean clearing);
 
-        // 刷新数据
+        /**
+         * 刷新数据
+         */
         void refresh();
 
-        // 加载更多文章
+        /**
+         * 加载更多文章
+         */
         void loadMore(long date);
 
-        // 显示文章详情
+        /**
+         * 显示文章详情
+         */
         void startReading(int position);
 
-        // 随便看看
+        /**
+         * 随便看看
+         */
         void feelLucky();
 
     }

@@ -19,35 +19,36 @@ import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import java.util.ArrayList;
 
 import java.util.Calendar;
+
 import priv.ky2.sparetime.R;
 import priv.ky2.sparetime.adapter.MainPagerAdapter;
 import priv.ky2.sparetime.adapter.OnRecyclerViewOnClickListener;
-import priv.ky2.sparetime.adapter.ZhihuDailyNewsAdapter;
+import priv.ky2.sparetime.adapter.ZHDailyAdapter;
 import priv.ky2.sparetime.bean.ZhihuDailyNews;
 
 /**
- * Created by wangkaiyan on 2017/4/18.
+ * @author wangkaiyan
+ * @date 2017/4/18.
  */
-
-public class ZhihuDailyFragment extends Fragment implements ZhihuDailyContract.View {
+public class ZHDailyFragment extends Fragment implements ZHDailyContract.View {
 
     private RecyclerView mRecyclerView;
     private SwipeRefreshLayout mRefresh;
     private FloatingActionButton fab;
     private TabLayout mTabLayout;
-
-    private ZhihuDailyNewsAdapter mZhihuDailyNewsAdapter;
+    private ZHDailyAdapter mZHDailyAdapter;
 
     private int mYear = Calendar.getInstance().get(Calendar.YEAR);
     private int mMonth = Calendar.getInstance().get(Calendar.MONTH);
     private int mDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
 
-    private ZhihuDailyContract.Presenter mPresenter;
+    private ZHDailyContract.Presenter mPresenter;
 
-    public ZhihuDailyFragment() {}
+    public ZHDailyFragment() {
+    }
 
-    public static ZhihuDailyFragment newInstance() {
-        return new ZhihuDailyFragment();
+    public static ZHDailyFragment newInstance() {
+        return new ZHDailyFragment();
     }
 
     public void onCreate(Bundle savedInstanceState) {
@@ -57,35 +58,28 @@ public class ZhihuDailyFragment extends Fragment implements ZhihuDailyContract.V
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_list,container,false);
-
+        View view = inflater.inflate(R.layout.fragment_list, container, false);
         initViews(view);
-
         mPresenter.start();
-
         mRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 
             @Override
             public void onRefresh() {
                 mPresenter.refresh();
             }
-
         });
-
         mRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
 
             boolean isSlidingToLast = false;
 
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-
                 LinearLayoutManager manager = (LinearLayoutManager) recyclerView.getLayoutManager();
                 // 当不滚动时
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     // 获取最后一个完全显示的item position
                     int lastVisibleItem = manager.findLastCompletelyVisibleItemPosition();
                     int totalItemCount = manager.getItemCount();
-
                     // 判断是否滚动到底部并且是向下滑动
                     if (lastVisibleItem == (totalItemCount - 1) && isSlidingToLast) {
                         Calendar c = Calendar.getInstance();
@@ -93,7 +87,6 @@ public class ZhihuDailyFragment extends Fragment implements ZhihuDailyContract.V
                         mPresenter.loadMore(c.getTimeInMillis());
                     }
                 }
-
                 super.onScrollStateChanged(recyclerView, newState);
             }
 
@@ -101,9 +94,8 @@ public class ZhihuDailyFragment extends Fragment implements ZhihuDailyContract.V
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 isSlidingToLast = dy > 0;
-
                 // 隐藏或者显示fab
-                if(dy > 0) {
+                if (dy > 0) {
                     fab.hide();
                 } else {
                     fab.show();
@@ -135,17 +127,15 @@ public class ZhihuDailyFragment extends Fragment implements ZhihuDailyContract.V
                             mPresenter.loadPosts(temp.getTimeInMillis(), true);
                         }
                     }, now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH));
-
                     dialog.setMaxDate(Calendar.getInstance());
                     Calendar minDate = Calendar.getInstance();
                     // 2013.5.20是知乎日报api首次上线
                     minDate.set(2013, 5, 20);
                     dialog.setMinDate(minDate);
                     dialog.vibrate(false);
-
                     dialog.show(getActivity().getFragmentManager(), "DatePickerDialog");
                 } else if (mTabLayout.getSelectedTabPosition() == 2) {
-                    ViewPager p = (ViewPager) getActivity().findViewById(R.id.view_pager);
+                    ViewPager p = getActivity().findViewById(R.id.view_pager);
                     MainPagerAdapter ad = (MainPagerAdapter) p.getAdapter();
                     ad.getDoubanFragment().showPickDialog();
                 }
@@ -157,8 +147,7 @@ public class ZhihuDailyFragment extends Fragment implements ZhihuDailyContract.V
 
     @Override
     public void showError() {
-
-        Snackbar.make(mRecyclerView, R.string.loaded_failed,Snackbar.LENGTH_INDEFINITE)
+        Snackbar.make(mRecyclerView, R.string.loaded_failed, Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.retry, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -170,7 +159,6 @@ public class ZhihuDailyFragment extends Fragment implements ZhihuDailyContract.V
 
     @Override
     public void showLoading() {
-
         mRefresh.post(new Runnable() {
             @Override
             public void run() {
@@ -181,7 +169,6 @@ public class ZhihuDailyFragment extends Fragment implements ZhihuDailyContract.V
 
     @Override
     public void stopLoading() {
-
         mRefresh.post(new Runnable() {
             @Override
             public void run() {
@@ -193,22 +180,22 @@ public class ZhihuDailyFragment extends Fragment implements ZhihuDailyContract.V
     @Override
     public void showResults(ArrayList<ZhihuDailyNews.Question> list) {
 
-        if (mZhihuDailyNewsAdapter == null) {
-            mZhihuDailyNewsAdapter = new ZhihuDailyNewsAdapter(getContext(), list);
-            mZhihuDailyNewsAdapter.setItemClickListener(new OnRecyclerViewOnClickListener() {
+        if (mZHDailyAdapter == null) {
+            mZHDailyAdapter = new ZHDailyAdapter(getContext(), list);
+            mZHDailyAdapter.setItemClickListener(new OnRecyclerViewOnClickListener() {
                 @Override
                 public void OnItemClick(View v, int position) {
                     mPresenter.startReading(position);
                 }
             });
-            mRecyclerView.setAdapter(mZhihuDailyNewsAdapter);
+            mRecyclerView.setAdapter(mZHDailyAdapter);
         } else {
-            mZhihuDailyNewsAdapter.notifyDataSetChanged();
+            mZHDailyAdapter.notifyDataSetChanged();
         }
     }
 
     @Override
-    public void setPresenter(ZhihuDailyContract.Presenter presenter) {
+    public void setPresenter(ZHDailyContract.Presenter presenter) {
         if (presenter != null) {
             mPresenter = presenter;
         }
@@ -216,18 +203,14 @@ public class ZhihuDailyFragment extends Fragment implements ZhihuDailyContract.V
 
     @Override
     public void initViews(View view) {
-
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        mRecyclerView = view.findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        mRefresh = (SwipeRefreshLayout) view.findViewById(R.id.refreshLayout);
+        mRefresh = view.findViewById(R.id.refreshLayout);
         //设置下拉刷新的按钮的颜色
         mRefresh.setColorSchemeResources(R.color.colorPrimary);
-
-        fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
+        fab = getActivity().findViewById(R.id.fab);
         fab.setRippleColor(getResources().getColor(R.color.colorPrimaryDark));
-
-        mTabLayout = (TabLayout) getActivity().findViewById(R.id.tab_layout);
+        mTabLayout = getActivity().findViewById(R.id.tab_layout);
     }
 }

@@ -21,7 +21,7 @@ import priv.ky2.sparetime.bean.ZhihuDailyNews;
  * Created by wangkaiyan on 2017/4/19.
  */
 
-public class ZhihuDailyNewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class ZHDailyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
     private final Context mContext;
@@ -32,7 +32,7 @@ public class ZhihuDailyNewsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     private static final int TYPE_NORMAL = 0;
     private static final int TYPE_FOOTER = 1;
 
-    public ZhihuDailyNewsAdapter(Context context, List<ZhihuDailyNews.Question> list){
+    public ZHDailyAdapter(Context context, List<ZhihuDailyNews.Question> list){
         mContext = context;
         this.list = list;
         this.inflater = LayoutInflater.from(context);
@@ -81,9 +81,9 @@ public class ZhihuDailyNewsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     @Override
     public int getItemViewType(int position) {
         if (position == list.size()) {
-            return ZhihuDailyNewsAdapter.TYPE_FOOTER;
+            return ZHDailyAdapter.TYPE_FOOTER;
         }
-        return ZhihuDailyNewsAdapter.TYPE_NORMAL;
+        return ZHDailyAdapter.TYPE_NORMAL;
     }
 
     public void setItemClickListener(OnRecyclerViewOnClickListener listener){

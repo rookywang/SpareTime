@@ -1,8 +1,5 @@
 package priv.ky2.sparetime.firstpage.zhihu;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.content.LocalBroadcastManager;
 
 import com.android.volley.VolleyError;
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.orhanobut.logger.Logger;
 
 import java.text.DateFormat;
@@ -21,23 +20,23 @@ import java.util.Date;
 import java.util.Random;
 
 import priv.ky2.sparetime.bean.BeanType;
-import priv.ky2.sparetime.network.StringModelImplement;
 import priv.ky2.sparetime.bean.ZhihuDailyNews;
 import priv.ky2.sparetime.database.DatabaseHelper;
 import priv.ky2.sparetime.details.DetailsActivity;
 import priv.ky2.sparetime.network.NetworkState;
 import priv.ky2.sparetime.network.OnStringListener;
+import priv.ky2.sparetime.network.StringModelImplement;
 import priv.ky2.sparetime.network.Urls;
 import priv.ky2.sparetime.service.CacheService;
 import priv.ky2.sparetime.utils.DateFormatter;
 
 /**
- * Created by wangkaiyan on 2017/4/18.
+ * @author wangkaiyan
+ * @date 2017/4/18.
  */
+public class ZHDailyPresenter implements ZHDailyContract.Presenter {
 
-public class ZhihuDailyPresenter implements ZhihuDailyContract.Presenter {
-
-    private ZhihuDailyContract.View view;
+    private ZHDailyContract.View view;
     private Context context;
     private StringModelImplement model;
 
@@ -49,7 +48,7 @@ public class ZhihuDailyPresenter implements ZhihuDailyContract.Presenter {
     private DatabaseHelper dbHelper;
     private SQLiteDatabase db;
 
-    public ZhihuDailyPresenter(Context context, ZhihuDailyContract.View view) {
+    public ZHDailyPresenter(Context context, ZHDailyContract.View view) {
         this.context = context;
         this.view = view;
         this.view.setPresenter(this);
@@ -60,31 +59,23 @@ public class ZhihuDailyPresenter implements ZhihuDailyContract.Presenter {
 
     @Override
     public void loadPosts(long date, final boolean clearing) {
-
         if (clearing) {
             view.showLoading();
         }
-
         if (NetworkState.networkConnected(context)) {
-
             model.load(Urls.ZHIHU_HISTORY + formatter.ZhihuDailyDateFormat(date), new OnStringListener() {
                 @Override
                 public void onSuccess(String result) {
-
                     try {
-
                         Logger.json(result);
-
                         ZhihuDailyNews post = gson.fromJson(result, ZhihuDailyNews.class);
                         ContentValues values = new ContentValues();
-
                         if (clearing) {
                             list.clear();
                         }
-
                         for (ZhihuDailyNews.Question item : post.getStories()) {
                             list.add(item);
-                            if ( !queryIfIDExists(item.getId())) {
+                            if (!queryIfIDExists(item.getId())) {
                                 db.beginTransaction();
                                 try {
                                     DateFormat format = new SimpleDateFormat("yyyyMMdd");
@@ -101,19 +92,16 @@ public class ZhihuDailyPresenter implements ZhihuDailyContract.Presenter {
                                 } finally {
                                     db.endTransaction();
                                 }
-
                             }
                             Intent intent = new Intent("pri.ky2.sparetime.LOCAL_BROADCAST");
                             intent.putExtra("type", CacheService.TYPE_ZHIHU);
                             intent.putExtra("id", item.getId());
                             LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-
                         }
                         view.showResults(list);
                     } catch (JsonSyntaxException e) {
                         view.showError();
                     }
-
                     view.stopLoading();
                 }
 
@@ -124,11 +112,8 @@ public class ZhihuDailyPresenter implements ZhihuDailyContract.Presenter {
                 }
             });
         } else {
-
             if (clearing) {
-
                 list.clear();
-
                 Cursor cursor = db.query("Zhihu", null, null, null, null, null, null);
                 if (cursor.moveToFirst()) {
                     do {
@@ -139,7 +124,6 @@ public class ZhihuDailyPresenter implements ZhihuDailyContract.Presenter {
                 cursor.close();
                 view.stopLoading();
                 view.showResults(list);
-
                 //当第一次安装应用，并且没有打开网络时
                 //此时既无法网络加载，也无法本地加载
                 if (list.isEmpty()) {
@@ -184,18 +168,16 @@ public class ZhihuDailyPresenter implements ZhihuDailyContract.Presenter {
         loadPosts(Calendar.getInstance().getTimeInMillis(), true);
     }
 
-    private boolean queryIfIDExists(int id){
-
-        Cursor cursor = db.query("Zhihu",null,null,null,null,null,null);
-        if (cursor.moveToFirst()){
+    private boolean queryIfIDExists(int id) {
+        Cursor cursor = db.query("Zhihu", null, null, null, null, null, null);
+        if (cursor.moveToFirst()) {
             do {
-                if (id == cursor.getInt(cursor.getColumnIndex("zhihu_id"))){
+                if (id == cursor.getInt(cursor.getColumnIndex("zhihu_id"))) {
                     return true;
                 }
             } while (cursor.moveToNext());
         }
         cursor.close();
-
         return false;
     }
 
