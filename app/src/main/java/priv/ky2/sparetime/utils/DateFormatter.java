@@ -4,33 +4,30 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * 将日期从long类型转换成String类型
+ * 将日期从lLong 类型转换成 String 类型
  *
- * Created by wangkaiyan on 2017/4/18.
+ * @author wangkaiyan
+ * @date 2017/4/18.
  */
 
 public class DateFormatter {
 
-    /**
-     * 将long类date转换为String类型
-     * @param date date
-     * @return String date
-     */
-    public String ZhihuDailyDateFormat(long date) {
-        String sDate;
-        Date d = new Date(date + 24*60*60*1000);
-        SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-        sDate = format.format(d);
+    private static final String ZH_DATE_FORMAT = "yyyyMMdd";
+    private static final String DB_DATE_FORMAT = "yyyy-MM-dd";
 
+    public String zhDateFormat(long date) {
+        String sDate;
+        Date d = new Date(date + 24 * 60 * 60 * 1000);
+        SimpleDateFormat format = new SimpleDateFormat(ZH_DATE_FORMAT);
+        sDate = format.format(d);
         return sDate;
     }
 
-    public String DoubanDateFormat(long date){
+    public String dbDateFormat(long date) {
         String sDate;
         Date d = new Date(date);
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat format = new SimpleDateFormat(DB_DATE_FORMAT);
         sDate = format.format(d);
-
         return sDate;
     }
 }

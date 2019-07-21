@@ -63,7 +63,7 @@ public class ZHDailyPresenter implements ZHDailyContract.Presenter {
             view.showLoading();
         }
         if (NetworkState.networkConnected(context)) {
-            model.load(Urls.ZHIHU_HISTORY + formatter.ZhihuDailyDateFormat(date), new OnStringListener() {
+            model.load(Urls.ZHIHU_HISTORY + formatter.zhDateFormat(date), new OnStringListener() {
                 @Override
                 public void onSuccess(String result) {
                     try {
@@ -145,13 +145,11 @@ public class ZHDailyPresenter implements ZHDailyContract.Presenter {
 
     @Override
     public void startReading(int position) {
-
         context.startActivity(new Intent(context, DetailsActivity.class)
                 .putExtra("type", BeanType.TYPE_ZHIHU)
                 .putExtra("id", list.get(position).getId())
                 .putExtra("title", list.get(position).getTitle())
                 .putExtra("coverUrl", list.get(position).getImages().get(0)));
-
     }
 
     @Override

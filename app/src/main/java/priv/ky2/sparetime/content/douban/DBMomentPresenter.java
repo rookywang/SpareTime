@@ -77,7 +77,7 @@ public class DBMomentPresenter implements DBMomentContract.Presenter {
             view.startLoading();
         }
         if (NetworkState.networkConnected(context)) {
-            model.load(Urls.DOUBAN_MOMENT + new DateFormatter().DoubanDateFormat(date), new OnStringListener() {
+            model.load(Urls.DOUBAN_MOMENT + new DateFormatter().dbDateFormat(date), new OnStringListener() {
                 @Override
                 public void onSuccess(String result) {
                     try {
